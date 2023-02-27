@@ -1,0 +1,11 @@
+framework module RewardsSDK {
+  umbrella header "RewardsSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module RewardsSDK.Swift {
+    header "RewardsSDK-Swift.h"
+    requires objc
+}

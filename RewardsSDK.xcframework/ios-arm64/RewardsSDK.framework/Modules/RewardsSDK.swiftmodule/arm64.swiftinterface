@@ -1,0 +1,912 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name RewardsSDK
+import CoreLocation
+import Dispatch
+import Foundation
+import MobileCoreServices
+import PoweredByDosh
+@_exported import RewardsSDK
+import Swift
+import SystemConfiguration
+import UIKit
+import _Concurrency
+extension Foundation.NSNotification.Name {
+  public struct Task {
+    public static let DidResume: Foundation.Notification.Name
+    public static let DidSuspend: Foundation.Notification.Name
+    public static let DidCancel: Foundation.Notification.Name
+    public static let DidComplete: Foundation.Notification.Name
+  }
+}
+extension Foundation.Notification {
+  public struct Key {
+    public static let Task: Swift.String
+    public static let ResponseData: Swift.String
+  }
+}
+@objc @_inheritsConvenienceInitializers open class SessionDelegate : ObjectiveC.NSObject {
+  open var sessionDidBecomeInvalidWithError: ((Foundation.URLSession, Swift.Error?) -> Swift.Void)?
+  open var sessionDidReceiveChallenge: ((Foundation.URLSession, Foundation.URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?))?
+  open var sessionDidReceiveChallengeWithCompletion: ((Foundation.URLSession, Foundation.URLAuthenticationChallenge, @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void) -> Swift.Void)?
+  open var sessionDidFinishEventsForBackgroundURLSession: ((Foundation.URLSession) -> Swift.Void)?
+  open var taskWillPerformHTTPRedirection: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.HTTPURLResponse, Foundation.URLRequest) -> Foundation.URLRequest?)?
+  open var taskWillPerformHTTPRedirectionWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.HTTPURLResponse, Foundation.URLRequest, @escaping (Foundation.URLRequest?) -> Swift.Void) -> Swift.Void)?
+  open var taskDidReceiveChallenge: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?))?
+  open var taskDidReceiveChallengeWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, Foundation.URLAuthenticationChallenge, @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void) -> Swift.Void)?
+  open var taskNeedNewBodyStream: ((Foundation.URLSession, Foundation.URLSessionTask) -> Foundation.InputStream?)?
+  open var taskNeedNewBodyStreamWithCompletion: ((Foundation.URLSession, Foundation.URLSessionTask, @escaping (Foundation.InputStream?) -> Swift.Void) -> Swift.Void)?
+  open var taskDidSendBodyData: ((Foundation.URLSession, Foundation.URLSessionTask, Swift.Int64, Swift.Int64, Swift.Int64) -> Swift.Void)?
+  open var taskDidComplete: ((Foundation.URLSession, Foundation.URLSessionTask, Swift.Error?) -> Swift.Void)?
+  open var dataTaskDidReceiveResponse: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLResponse) -> Foundation.URLSession.ResponseDisposition)?
+  open var dataTaskDidReceiveResponseWithCompletion: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLResponse, @escaping (Foundation.URLSession.ResponseDisposition) -> Swift.Void) -> Swift.Void)?
+  open var dataTaskDidBecomeDownloadTask: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.URLSessionDownloadTask) -> Swift.Void)?
+  open var dataTaskDidReceiveData: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.Data) -> Swift.Void)?
+  open var dataTaskWillCacheResponse: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.CachedURLResponse) -> Foundation.CachedURLResponse?)?
+  open var dataTaskWillCacheResponseWithCompletion: ((Foundation.URLSession, Foundation.URLSessionDataTask, Foundation.CachedURLResponse, @escaping (Foundation.CachedURLResponse?) -> Swift.Void) -> Swift.Void)?
+  open var downloadTaskDidFinishDownloadingToURL: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Foundation.URL) -> Swift.Void)?
+  open var downloadTaskDidWriteData: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Swift.Int64, Swift.Int64, Swift.Int64) -> Swift.Void)?
+  open var downloadTaskDidResumeAtOffset: ((Foundation.URLSession, Foundation.URLSessionDownloadTask, Swift.Int64, Swift.Int64) -> Swift.Void)?
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  open var streamTaskReadClosed: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    get
+    set
+  }
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  open var streamTaskWriteClosed: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    get
+    set
+  }
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  open var streamTaskBetterRouteDiscovered: ((Foundation.URLSession, Foundation.URLSessionStreamTask) -> Swift.Void)? {
+    get
+    set
+  }
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  open var streamTaskDidBecomeInputAndOutputStreams: ((Foundation.URLSession, Foundation.URLSessionStreamTask, Foundation.InputStream, Foundation.OutputStream) -> Swift.Void)? {
+    get
+    set
+  }
+  open subscript(task: Foundation.URLSessionTask) -> RewardsSDK.Request? {
+    get
+    set
+  }
+  @objc override dynamic public init()
+  @objc override dynamic open func responds(to selector: ObjectiveC.Selector) -> Swift.Bool
+  @objc deinit
+}
+extension RewardsSDK.SessionDelegate : Foundation.URLSessionDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, didBecomeInvalidWithError error: Swift.Error?)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void)
+  @objc dynamic open func urlSessionDidFinishEvents(forBackgroundURLSession session: Foundation.URLSession)
+}
+extension RewardsSDK.SessionDelegate : Foundation.URLSessionTaskDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (Foundation.URLRequest?) -> Swift.Void)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (Foundation.URLSession.AuthChallengeDisposition, Foundation.URLCredential?) -> Swift.Void)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, needNewBodyStream completionHandler: @escaping (Foundation.InputStream?) -> Swift.Void)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+  @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
+  @objc(URLSession:task:didFinishCollectingMetrics:) dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, task: Foundation.URLSessionTask, didCompleteWithError error: Swift.Error?)
+}
+extension RewardsSDK.SessionDelegate : Foundation.URLSessionDataDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (Foundation.URLSession.ResponseDisposition) -> Swift.Void)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didBecome downloadTask: Foundation.URLSessionDownloadTask)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, didReceive data: Foundation.Data)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, dataTask: Foundation.URLSessionDataTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (Foundation.CachedURLResponse?) -> Swift.Void)
+}
+extension RewardsSDK.SessionDelegate : Foundation.URLSessionDownloadDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didFinishDownloadingTo location: Foundation.URL)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, downloadTask: Foundation.URLSessionDownloadTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64)
+}
+@available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+extension RewardsSDK.SessionDelegate : Foundation.URLSessionStreamDelegate {
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, readClosedFor streamTask: Foundation.URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, writeClosedFor streamTask: Foundation.URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, betterRouteDiscoveredFor streamTask: Foundation.URLSessionStreamTask)
+  @objc dynamic open func urlSession(_ session: Foundation.URLSession, streamTask: Foundation.URLSessionStreamTask, didBecome inputStream: Foundation.InputStream, outputStream: Foundation.OutputStream)
+}
+public struct DefaultDataResponse {
+  public let request: Foundation.URLRequest?
+  public let response: Foundation.HTTPURLResponse?
+  public let data: Foundation.Data?
+  public let error: Swift.Error?
+  public let timeline: RewardsSDK.Timeline
+  public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: Swift.Error?, timeline: RewardsSDK.Timeline = Timeline(), metrics: Swift.AnyObject? = nil)
+}
+public struct DataResponse<Value> {
+  public let request: Foundation.URLRequest?
+  public let response: Foundation.HTTPURLResponse?
+  public let data: Foundation.Data?
+  public let result: RewardsSDK.Result<Value>
+  public let timeline: RewardsSDK.Timeline
+  public var value: Value? {
+    get
+  }
+  public var error: Swift.Error? {
+    get
+  }
+  public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, result: RewardsSDK.Result<Value>, timeline: RewardsSDK.Timeline = Timeline())
+}
+extension RewardsSDK.DataResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.DataResponse {
+  public func map<T>(_ transform: (Value) -> T) -> RewardsSDK.DataResponse<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> RewardsSDK.DataResponse<T>
+  public func mapError<E>(_ transform: (Swift.Error) -> E) -> RewardsSDK.DataResponse<Value> where E : Swift.Error
+  public func flatMapError<E>(_ transform: (Swift.Error) throws -> E) -> RewardsSDK.DataResponse<Value> where E : Swift.Error
+}
+public struct DefaultDownloadResponse {
+  public let request: Foundation.URLRequest?
+  public let response: Foundation.HTTPURLResponse?
+  public let temporaryURL: Foundation.URL?
+  public let destinationURL: Foundation.URL?
+  public let resumeData: Foundation.Data?
+  public let error: Swift.Error?
+  public let timeline: RewardsSDK.Timeline
+  public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, temporaryURL: Foundation.URL?, destinationURL: Foundation.URL?, resumeData: Foundation.Data?, error: Swift.Error?, timeline: RewardsSDK.Timeline = Timeline(), metrics: Swift.AnyObject? = nil)
+}
+public struct DownloadResponse<Value> {
+  public let request: Foundation.URLRequest?
+  public let response: Foundation.HTTPURLResponse?
+  public let temporaryURL: Foundation.URL?
+  public let destinationURL: Foundation.URL?
+  public let resumeData: Foundation.Data?
+  public let result: RewardsSDK.Result<Value>
+  public let timeline: RewardsSDK.Timeline
+  public var value: Value? {
+    get
+  }
+  public var error: Swift.Error? {
+    get
+  }
+  public init(request: Foundation.URLRequest?, response: Foundation.HTTPURLResponse?, temporaryURL: Foundation.URL?, destinationURL: Foundation.URL?, resumeData: Foundation.Data?, result: RewardsSDK.Result<Value>, timeline: RewardsSDK.Timeline = Timeline())
+}
+extension RewardsSDK.DownloadResponse : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.DownloadResponse {
+  public func map<T>(_ transform: (Value) -> T) -> RewardsSDK.DownloadResponse<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> RewardsSDK.DownloadResponse<T>
+  public func mapError<E>(_ transform: (Swift.Error) -> E) -> RewardsSDK.DownloadResponse<Value> where E : Swift.Error
+  public func flatMapError<E>(_ transform: (Swift.Error) throws -> E) -> RewardsSDK.DownloadResponse<Value> where E : Swift.Error
+}
+@available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
+extension RewardsSDK.DefaultDataResponse {
+  public var metrics: Foundation.URLSessionTaskMetrics? {
+    get
+  }
+}
+@available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
+extension RewardsSDK.DataResponse {
+  public var metrics: Foundation.URLSessionTaskMetrics? {
+    get
+  }
+}
+@available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
+extension RewardsSDK.DefaultDownloadResponse {
+  public var metrics: Foundation.URLSessionTaskMetrics? {
+    get
+  }
+}
+@available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
+extension RewardsSDK.DownloadResponse {
+  public var metrics: Foundation.URLSessionTaskMetrics? {
+    get
+  }
+}
+@objc public protocol RewardsManagerDelegate : ObjectiveC.NSObjectProtocol {
+  @objc func errorOccured(error: Swift.String, reason: Swift.String)
+  @objc func callbackDetected(name: Swift.String)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class RewardsManager : ObjectiveC.NSObject {
+  @objc weak public var delegate: RewardsSDK.RewardsManagerDelegate?
+  @objc public static let shared: RewardsSDK.RewardsManager
+  @objc public func initialize(origin: Swift.String!, cardholderId: Swift.String!, uiContext: UIKit.UIViewController!, headerTitle: Swift.String!, userProfileName: Swift.String?, userProfileImage: Foundation.URL?, summaryContent: Swift.String?, userCurrentLocation: CoreLocation.CLLocation?, theme: RewardsSDK.RewardsSDKTheme?)
+  @objc public func logoutUser()
+  @objc public func addCustomCallbacks(callbacks: [Swift.String])
+  @objc public func dismissRewards(completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @objc public func rewardsDeeplink(deepLinkUrl: Foundation.URL!, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @objc deinit
+}
+extension RewardsSDK.Request {
+  public enum ValidationResult {
+    case success
+    case failure(Swift.Error)
+  }
+}
+extension RewardsSDK.DataRequest {
+  public typealias Validation = (Foundation.URLRequest?, Foundation.HTTPURLResponse, Foundation.Data?) -> RewardsSDK.Request.ValidationResult
+  @discardableResult
+  public func validate(_ validation: @escaping RewardsSDK.DataRequest.Validation) -> Self
+  @discardableResult
+  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift.Sequence, S.Element == Swift.Int
+  @discardableResult
+  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift.Sequence, S.Element == Swift.String
+  @discardableResult
+  public func validate() -> Self
+}
+extension RewardsSDK.DownloadRequest {
+  public typealias Validation = (_ request: Foundation.URLRequest?, _ response: Foundation.HTTPURLResponse, _ temporaryURL: Foundation.URL?, _ destinationURL: Foundation.URL?) -> RewardsSDK.Request.ValidationResult
+  @discardableResult
+  public func validate(_ validation: @escaping RewardsSDK.DownloadRequest.Validation) -> Self
+  @discardableResult
+  public func validate<S>(statusCode acceptableStatusCodes: S) -> Self where S : Swift.Sequence, S.Element == Swift.Int
+  @discardableResult
+  public func validate<S>(contentType acceptableContentTypes: S) -> Self where S : Swift.Sequence, S.Element == Swift.String
+  @discardableResult
+  public func validate() -> Self
+}
+public protocol DataResponseSerializerProtocol {
+  associatedtype SerializedObject
+  var serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, Swift.Error?) -> RewardsSDK.Result<Self.SerializedObject> { get }
+}
+public struct DataResponseSerializer<Value> : RewardsSDK.DataResponseSerializerProtocol {
+  public typealias SerializedObject = Value
+  public var serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, Swift.Error?) -> RewardsSDK.Result<Value>
+  public init(serializeResponse: @escaping (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.Data?, Swift.Error?) -> RewardsSDK.Result<Value>)
+}
+public protocol DownloadResponseSerializerProtocol {
+  associatedtype SerializedObject
+  var serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, Swift.Error?) -> RewardsSDK.Result<Self.SerializedObject> { get }
+}
+public struct DownloadResponseSerializer<Value> : RewardsSDK.DownloadResponseSerializerProtocol {
+  public typealias SerializedObject = Value
+  public var serializeResponse: (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, Swift.Error?) -> RewardsSDK.Result<Value>
+  public init(serializeResponse: @escaping (Foundation.URLRequest?, Foundation.HTTPURLResponse?, Foundation.URL?, Swift.Error?) -> RewardsSDK.Result<Value>)
+}
+extension RewardsSDK.DataRequest {
+  @discardableResult
+  public func response(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (RewardsSDK.DefaultDataResponse) -> Swift.Void) -> Self
+  @discardableResult
+  public func response<T>(queue: Dispatch.DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (RewardsSDK.DataResponse<T.SerializedObject>) -> Swift.Void) -> Self where T : RewardsSDK.DataResponseSerializerProtocol
+}
+extension RewardsSDK.DownloadRequest {
+  @discardableResult
+  public func response(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (RewardsSDK.DefaultDownloadResponse) -> Swift.Void) -> Self
+  @discardableResult
+  public func response<T>(queue: Dispatch.DispatchQueue? = nil, responseSerializer: T, completionHandler: @escaping (RewardsSDK.DownloadResponse<T.SerializedObject>) -> Swift.Void) -> Self where T : RewardsSDK.DownloadResponseSerializerProtocol
+}
+extension RewardsSDK.Request {
+  public static func serializeResponseData(response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: Swift.Error?) -> RewardsSDK.Result<Foundation.Data>
+}
+extension RewardsSDK.DataRequest {
+  public static func dataResponseSerializer() -> RewardsSDK.DataResponseSerializer<Foundation.Data>
+  @discardableResult
+  public func responseData(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (RewardsSDK.DataResponse<Foundation.Data>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.DownloadRequest {
+  public static func dataResponseSerializer() -> RewardsSDK.DownloadResponseSerializer<Foundation.Data>
+  @discardableResult
+  public func responseData(queue: Dispatch.DispatchQueue? = nil, completionHandler: @escaping (RewardsSDK.DownloadResponse<Foundation.Data>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.Request {
+  public static func serializeResponseString(encoding: Swift.String.Encoding?, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: Swift.Error?) -> RewardsSDK.Result<Swift.String>
+}
+extension RewardsSDK.DataRequest {
+  public static func stringResponseSerializer(encoding: Swift.String.Encoding? = nil) -> RewardsSDK.DataResponseSerializer<Swift.String>
+  @discardableResult
+  public func responseString(queue: Dispatch.DispatchQueue? = nil, encoding: Swift.String.Encoding? = nil, completionHandler: @escaping (RewardsSDK.DataResponse<Swift.String>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.DownloadRequest {
+  public static func stringResponseSerializer(encoding: Swift.String.Encoding? = nil) -> RewardsSDK.DownloadResponseSerializer<Swift.String>
+  @discardableResult
+  public func responseString(queue: Dispatch.DispatchQueue? = nil, encoding: Swift.String.Encoding? = nil, completionHandler: @escaping (RewardsSDK.DownloadResponse<Swift.String>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.Request {
+  public static func serializeResponseJSON(options: Foundation.JSONSerialization.ReadingOptions, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: Swift.Error?) -> RewardsSDK.Result<Any>
+}
+extension RewardsSDK.DataRequest {
+  public static func jsonResponseSerializer(options: Foundation.JSONSerialization.ReadingOptions = .allowFragments) -> RewardsSDK.DataResponseSerializer<Any>
+  @discardableResult
+  public func responseJSON(queue: Dispatch.DispatchQueue? = nil, options: Foundation.JSONSerialization.ReadingOptions = .allowFragments, completionHandler: @escaping (RewardsSDK.DataResponse<Any>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.DownloadRequest {
+  public static func jsonResponseSerializer(options: Foundation.JSONSerialization.ReadingOptions = .allowFragments) -> RewardsSDK.DownloadResponseSerializer<Any>
+  @discardableResult
+  public func responseJSON(queue: Dispatch.DispatchQueue? = nil, options: Foundation.JSONSerialization.ReadingOptions = .allowFragments, completionHandler: @escaping (RewardsSDK.DownloadResponse<Any>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.Request {
+  public static func serializeResponsePropertyList(options: Foundation.PropertyListSerialization.ReadOptions, response: Foundation.HTTPURLResponse?, data: Foundation.Data?, error: Swift.Error?) -> RewardsSDK.Result<Any>
+}
+extension RewardsSDK.DataRequest {
+  public static func propertyListResponseSerializer(options: Foundation.PropertyListSerialization.ReadOptions = []) -> RewardsSDK.DataResponseSerializer<Any>
+  @discardableResult
+  public func responsePropertyList(queue: Dispatch.DispatchQueue? = nil, options: Foundation.PropertyListSerialization.ReadOptions = [], completionHandler: @escaping (RewardsSDK.DataResponse<Any>) -> Swift.Void) -> Self
+}
+extension RewardsSDK.DownloadRequest {
+  public static func propertyListResponseSerializer(options: Foundation.PropertyListSerialization.ReadOptions = []) -> RewardsSDK.DownloadResponseSerializer<Any>
+  @discardableResult
+  public func responsePropertyList(queue: Dispatch.DispatchQueue? = nil, options: Foundation.PropertyListSerialization.ReadOptions = [], completionHandler: @escaping (RewardsSDK.DownloadResponse<Any>) -> Swift.Void) -> Self
+}
+public enum Result<Value> {
+  case success(Value)
+  case failure(Swift.Error)
+  public var isSuccess: Swift.Bool {
+    get
+  }
+  public var isFailure: Swift.Bool {
+    get
+  }
+  public var value: Value? {
+    get
+  }
+  public var error: Swift.Error? {
+    get
+  }
+}
+extension RewardsSDK.Result : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.Result : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.Result {
+  public init(value: () throws -> Value)
+  public func unwrap() throws -> Value
+  public func map<T>(_ transform: (Value) -> T) -> RewardsSDK.Result<T>
+  public func flatMap<T>(_ transform: (Value) throws -> T) -> RewardsSDK.Result<T>
+  public func mapError<T>(_ transform: (Swift.Error) -> T) -> RewardsSDK.Result<Value> where T : Swift.Error
+  public func flatMapError<T>(_ transform: (Swift.Error) throws -> T) -> RewardsSDK.Result<Value> where T : Swift.Error
+  @discardableResult
+  public func withValue(_ closure: (Value) throws -> Swift.Void) rethrows -> RewardsSDK.Result<Value>
+  @discardableResult
+  public func withError(_ closure: (Swift.Error) throws -> Swift.Void) rethrows -> RewardsSDK.Result<Value>
+  @discardableResult
+  public func ifSuccess(_ closure: () throws -> Swift.Void) rethrows -> RewardsSDK.Result<Value>
+  @discardableResult
+  public func ifFailure(_ closure: () throws -> Swift.Void) rethrows -> RewardsSDK.Result<Value>
+}
+open class ServerTrustPolicyManager {
+  final public let policies: [Swift.String : RewardsSDK.ServerTrustPolicy]
+  public init(policies: [Swift.String : RewardsSDK.ServerTrustPolicy])
+  open func serverTrustPolicy(forHost host: Swift.String) -> RewardsSDK.ServerTrustPolicy?
+  @objc deinit
+}
+public enum ServerTrustPolicy {
+  case performDefaultEvaluation(validateHost: Swift.Bool)
+  case performRevokedEvaluation(validateHost: Swift.Bool, revocationFlags: CoreFoundation.CFOptionFlags)
+  case pinCertificates(certificates: [Security.SecCertificate], validateCertificateChain: Swift.Bool, validateHost: Swift.Bool)
+  case pinPublicKeys(publicKeys: [Security.SecKey], validateCertificateChain: Swift.Bool, validateHost: Swift.Bool)
+  case disableEvaluation
+  case customEvaluation((_ serverTrust: Security.SecTrust, _ host: Swift.String) -> Swift.Bool)
+  public static func certificates(in bundle: Foundation.Bundle = Bundle.main) -> [Security.SecCertificate]
+  public static func publicKeys(in bundle: Foundation.Bundle = Bundle.main) -> [Security.SecKey]
+  public func evaluate(_ serverTrust: Security.SecTrust, forHost host: Swift.String) -> Swift.Bool
+}
+public enum AFError : Swift.Error {
+  public enum ParameterEncodingFailureReason {
+    case missingURL
+    case jsonEncodingFailed(error: Swift.Error)
+    case propertyListEncodingFailed(error: Swift.Error)
+  }
+  public enum MultipartEncodingFailureReason {
+    case bodyPartURLInvalid(url: Foundation.URL)
+    case bodyPartFilenameInvalid(in: Foundation.URL)
+    case bodyPartFileNotReachable(at: Foundation.URL)
+    case bodyPartFileNotReachableWithError(atURL: Foundation.URL, error: Swift.Error)
+    case bodyPartFileIsDirectory(at: Foundation.URL)
+    case bodyPartFileSizeNotAvailable(at: Foundation.URL)
+    case bodyPartFileSizeQueryFailedWithError(forURL: Foundation.URL, error: Swift.Error)
+    case bodyPartInputStreamCreationFailed(for: Foundation.URL)
+    case outputStreamCreationFailed(for: Foundation.URL)
+    case outputStreamFileAlreadyExists(at: Foundation.URL)
+    case outputStreamURLInvalid(url: Foundation.URL)
+    case outputStreamWriteFailed(error: Swift.Error)
+    case inputStreamReadFailed(error: Swift.Error)
+  }
+  public enum ResponseValidationFailureReason {
+    case dataFileNil
+    case dataFileReadFailed(at: Foundation.URL)
+    case missingContentType(acceptableContentTypes: [Swift.String])
+    case unacceptableContentType(acceptableContentTypes: [Swift.String], responseContentType: Swift.String)
+    case unacceptableStatusCode(code: Swift.Int)
+  }
+  public enum ResponseSerializationFailureReason {
+    case inputDataNil
+    case inputDataNilOrZeroLength
+    case inputFileNil
+    case inputFileReadFailed(at: Foundation.URL)
+    case stringSerializationFailed(encoding: Swift.String.Encoding)
+    case jsonSerializationFailed(error: Swift.Error)
+    case propertyListSerializationFailed(error: Swift.Error)
+  }
+  case invalidURL(url: RewardsSDK.URLConvertible)
+  case parameterEncodingFailed(reason: RewardsSDK.AFError.ParameterEncodingFailureReason)
+  case multipartEncodingFailed(reason: RewardsSDK.AFError.MultipartEncodingFailureReason)
+  case responseValidationFailed(reason: RewardsSDK.AFError.ResponseValidationFailureReason)
+  case responseSerializationFailed(reason: RewardsSDK.AFError.ResponseSerializationFailureReason)
+}
+extension RewardsSDK.AFError {
+  public var isInvalidURLError: Swift.Bool {
+    get
+  }
+  public var isParameterEncodingError: Swift.Bool {
+    get
+  }
+  public var isMultipartEncodingError: Swift.Bool {
+    get
+  }
+  public var isResponseValidationError: Swift.Bool {
+    get
+  }
+  public var isResponseSerializationError: Swift.Bool {
+    get
+  }
+}
+extension RewardsSDK.AFError {
+  public var urlConvertible: RewardsSDK.URLConvertible? {
+    get
+  }
+  public var url: Foundation.URL? {
+    get
+  }
+  public var underlyingError: Swift.Error? {
+    get
+  }
+  public var acceptableContentTypes: [Swift.String]? {
+    get
+  }
+  public var responseContentType: Swift.String? {
+    get
+  }
+  public var responseCode: Swift.Int? {
+    get
+  }
+  public var failedStringEncoding: Swift.String.Encoding? {
+    get
+  }
+}
+extension RewardsSDK.AFError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+open class MultipartFormData {
+  open var contentType: Swift.String {
+    get
+    set
+  }
+  public var contentLength: Swift.UInt64 {
+    get
+  }
+  public var boundary: Swift.String
+  public init()
+  public func append(_ data: Foundation.Data, withName name: Swift.String)
+  public func append(_ data: Foundation.Data, withName name: Swift.String, mimeType: Swift.String)
+  public func append(_ data: Foundation.Data, withName name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
+  public func append(_ fileURL: Foundation.URL, withName name: Swift.String)
+  public func append(_ fileURL: Foundation.URL, withName name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
+  public func append(_ stream: Foundation.InputStream, withLength length: Swift.UInt64, name: Swift.String, fileName: Swift.String, mimeType: Swift.String)
+  public func append(_ stream: Foundation.InputStream, withLength length: Swift.UInt64, headers: RewardsSDK.HTTPHeaders)
+  public func encode() throws -> Foundation.Data
+  public func writeEncodedData(to fileURL: Foundation.URL) throws
+  @objc deinit
+}
+public protocol RequestAdapter {
+  func adapt(_ urlRequest: Foundation.URLRequest) throws -> Foundation.URLRequest
+}
+public typealias RequestRetryCompletion = (_ shouldRetry: Swift.Bool, _ timeDelay: Foundation.TimeInterval) -> Swift.Void
+public protocol RequestRetrier {
+  func should(_ manager: RewardsSDK.SessionManager, retry request: RewardsSDK.Request, with error: Swift.Error, completion: @escaping RewardsSDK.RequestRetryCompletion)
+}
+public typealias HTTPHeaders = [Swift.String : Swift.String]
+@_hasMissingDesignatedInitializers open class Request {
+  public typealias ProgressHandler = (Foundation.Progress) -> Swift.Void
+  open var task: Foundation.URLSessionTask? {
+    get
+  }
+  final public let session: Foundation.URLSession
+  open var request: Foundation.URLRequest? {
+    get
+  }
+  open var response: Foundation.HTTPURLResponse? {
+    get
+  }
+  open var retryCount: Swift.UInt {
+    get
+  }
+  @discardableResult
+  open func authenticate(user: Swift.String, password: Swift.String, persistence: Foundation.URLCredential.Persistence = .forSession) -> Self
+  @discardableResult
+  open func authenticate(usingCredential credential: Foundation.URLCredential) -> Self
+  open class func authorizationHeader(user: Swift.String, password: Swift.String) -> (key: Swift.String, value: Swift.String)?
+  open func resume()
+  open func suspend()
+  open func cancel()
+  @objc deinit
+}
+extension RewardsSDK.Request : Swift.CustomStringConvertible {
+  open var description: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.Request : Swift.CustomDebugStringConvertible {
+  open var debugDescription: Swift.String {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers open class DataRequest : RewardsSDK.Request {
+  override open var request: Foundation.URLRequest? {
+    get
+  }
+  open var progress: Foundation.Progress {
+    get
+  }
+  @discardableResult
+  open func stream(closure: ((Foundation.Data) -> Swift.Void)? = nil) -> Self
+  @discardableResult
+  open func downloadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping RewardsSDK.DataRequest.ProgressHandler) -> Self
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers open class DownloadRequest : RewardsSDK.Request {
+  public struct DownloadOptions : Swift.OptionSet {
+    public let rawValue: Swift.UInt
+    public static let createIntermediateDirectories: RewardsSDK.DownloadRequest.DownloadOptions
+    public static let removePreviousFile: RewardsSDK.DownloadRequest.DownloadOptions
+    public init(rawValue: Swift.UInt)
+    public typealias ArrayLiteralElement = RewardsSDK.DownloadRequest.DownloadOptions
+    public typealias Element = RewardsSDK.DownloadRequest.DownloadOptions
+    public typealias RawValue = Swift.UInt
+  }
+  public typealias DownloadFileDestination = (_ temporaryURL: Foundation.URL, _ response: Foundation.HTTPURLResponse) -> (destinationURL: Foundation.URL, options: RewardsSDK.DownloadRequest.DownloadOptions)
+  override open var request: Foundation.URLRequest? {
+    get
+  }
+  open var resumeData: Foundation.Data? {
+    get
+  }
+  open var progress: Foundation.Progress {
+    get
+  }
+  override open func cancel()
+  open func cancel(createResumeData: Swift.Bool)
+  @discardableResult
+  open func downloadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping RewardsSDK.DownloadRequest.ProgressHandler) -> Self
+  open class func suggestedDownloadDestination(for directory: Foundation.FileManager.SearchPathDirectory = .documentDirectory, in domain: Foundation.FileManager.SearchPathDomainMask = .userDomainMask) -> RewardsSDK.DownloadRequest.DownloadFileDestination
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers open class UploadRequest : RewardsSDK.DataRequest {
+  override open var request: Foundation.URLRequest? {
+    get
+  }
+  open var uploadProgress: Foundation.Progress {
+    get
+  }
+  @discardableResult
+  open func uploadProgress(queue: Dispatch.DispatchQueue = DispatchQueue.main, closure: @escaping RewardsSDK.UploadRequest.ProgressHandler) -> Self
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+open class StreamRequest : RewardsSDK.Request {
+  @objc deinit
+}
+public struct Timeline {
+  public let requestStartTime: CoreFoundation.CFAbsoluteTime
+  public let initialResponseTime: CoreFoundation.CFAbsoluteTime
+  public let requestCompletedTime: CoreFoundation.CFAbsoluteTime
+  public let serializationCompletedTime: CoreFoundation.CFAbsoluteTime
+  public let latency: Foundation.TimeInterval
+  public let requestDuration: Foundation.TimeInterval
+  public let serializationDuration: Foundation.TimeInterval
+  public let totalDuration: Foundation.TimeInterval
+  public init(requestStartTime: CoreFoundation.CFAbsoluteTime = 0.0, initialResponseTime: CoreFoundation.CFAbsoluteTime = 0.0, requestCompletedTime: CoreFoundation.CFAbsoluteTime = 0.0, serializationCompletedTime: CoreFoundation.CFAbsoluteTime = 0.0)
+}
+extension RewardsSDK.Timeline : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension RewardsSDK.Timeline : Swift.CustomDebugStringConvertible {
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum HTTPMethod : Swift.String {
+  case options
+  case get
+  case head
+  case post
+  case put
+  case patch
+  case delete
+  case trace
+  case connect
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias Parameters = [Swift.String : Any]
+public protocol ParameterEncoding {
+  func encode(_ urlRequest: RewardsSDK.URLRequestConvertible, with parameters: RewardsSDK.Parameters?) throws -> Foundation.URLRequest
+}
+public struct URLEncoding : RewardsSDK.ParameterEncoding {
+  public enum Destination {
+    case methodDependent, queryString, httpBody
+    public static func == (a: RewardsSDK.URLEncoding.Destination, b: RewardsSDK.URLEncoding.Destination) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum ArrayEncoding {
+    case brackets, noBrackets
+    public static func == (a: RewardsSDK.URLEncoding.ArrayEncoding, b: RewardsSDK.URLEncoding.ArrayEncoding) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum BoolEncoding {
+    case numeric, literal
+    public static func == (a: RewardsSDK.URLEncoding.BoolEncoding, b: RewardsSDK.URLEncoding.BoolEncoding) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static var `default`: RewardsSDK.URLEncoding {
+    get
+  }
+  public static var methodDependent: RewardsSDK.URLEncoding {
+    get
+  }
+  public static var queryString: RewardsSDK.URLEncoding {
+    get
+  }
+  public static var httpBody: RewardsSDK.URLEncoding {
+    get
+  }
+  public let destination: RewardsSDK.URLEncoding.Destination
+  public let arrayEncoding: RewardsSDK.URLEncoding.ArrayEncoding
+  public let boolEncoding: RewardsSDK.URLEncoding.BoolEncoding
+  public init(destination: RewardsSDK.URLEncoding.Destination = .methodDependent, arrayEncoding: RewardsSDK.URLEncoding.ArrayEncoding = .brackets, boolEncoding: RewardsSDK.URLEncoding.BoolEncoding = .numeric)
+  public func encode(_ urlRequest: RewardsSDK.URLRequestConvertible, with parameters: RewardsSDK.Parameters?) throws -> Foundation.URLRequest
+  public func queryComponents(fromKey key: Swift.String, value: Any) -> [(Swift.String, Swift.String)]
+  public func escape(_ string: Swift.String) -> Swift.String
+}
+public struct JSONEncoding : RewardsSDK.ParameterEncoding {
+  public static var `default`: RewardsSDK.JSONEncoding {
+    get
+  }
+  public static var prettyPrinted: RewardsSDK.JSONEncoding {
+    get
+  }
+  public let options: Foundation.JSONSerialization.WritingOptions
+  public init(options: Foundation.JSONSerialization.WritingOptions = [])
+  public func encode(_ urlRequest: RewardsSDK.URLRequestConvertible, with parameters: RewardsSDK.Parameters?) throws -> Foundation.URLRequest
+  public func encode(_ urlRequest: RewardsSDK.URLRequestConvertible, withJSONObject jsonObject: Any? = nil) throws -> Foundation.URLRequest
+}
+public struct PropertyListEncoding : RewardsSDK.ParameterEncoding {
+  public static var `default`: RewardsSDK.PropertyListEncoding {
+    get
+  }
+  public static var xml: RewardsSDK.PropertyListEncoding {
+    get
+  }
+  public static var binary: RewardsSDK.PropertyListEncoding {
+    get
+  }
+  public let format: Foundation.PropertyListSerialization.PropertyListFormat
+  public let options: Foundation.PropertyListSerialization.WriteOptions
+  public init(format: Foundation.PropertyListSerialization.PropertyListFormat = .xml, options: Foundation.PropertyListSerialization.WriteOptions = 0)
+  public func encode(_ urlRequest: RewardsSDK.URLRequestConvertible, with parameters: RewardsSDK.Parameters?) throws -> Foundation.URLRequest
+}
+@_hasMissingDesignatedInitializers open class NetworkReachabilityManager {
+  public enum NetworkReachabilityStatus {
+    case unknown
+    case notReachable
+    case reachable(RewardsSDK.NetworkReachabilityManager.ConnectionType)
+  }
+  public enum ConnectionType {
+    case ethernetOrWiFi
+    case wwan
+    public static func == (a: RewardsSDK.NetworkReachabilityManager.ConnectionType, b: RewardsSDK.NetworkReachabilityManager.ConnectionType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public typealias Listener = (RewardsSDK.NetworkReachabilityManager.NetworkReachabilityStatus) -> Swift.Void
+  open var isReachable: Swift.Bool {
+    get
+  }
+  open var isReachableOnWWAN: Swift.Bool {
+    get
+  }
+  open var isReachableOnEthernetOrWiFi: Swift.Bool {
+    get
+  }
+  open var networkReachabilityStatus: RewardsSDK.NetworkReachabilityManager.NetworkReachabilityStatus {
+    get
+  }
+  open var listenerQueue: Dispatch.DispatchQueue
+  open var listener: RewardsSDK.NetworkReachabilityManager.Listener?
+  open var flags: SystemConfiguration.SCNetworkReachabilityFlags? {
+    get
+  }
+  open var previousFlags: SystemConfiguration.SCNetworkReachabilityFlags
+  convenience public init?(host: Swift.String)
+  convenience public init?()
+  @objc deinit
+  @discardableResult
+  open func startListening() -> Swift.Bool
+  open func stopListening()
+}
+extension RewardsSDK.NetworkReachabilityManager.NetworkReachabilityStatus : Swift.Equatable {
+}
+public func == (lhs: RewardsSDK.NetworkReachabilityManager.NetworkReachabilityStatus, rhs: RewardsSDK.NetworkReachabilityManager.NetworkReachabilityStatus) -> Swift.Bool
+@objc public enum RewardsImageStyle : Swift.Int {
+  case roundedRect
+  case circular
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum RewardsHeaderStyle : Swift.Int {
+  case diagonal
+  case rectangular
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class RewardsSDKTheme : ObjectiveC.NSObject {
+  @objc public var headerColor: UIKit.UIColor
+  @objc public var primaryColor: UIKit.UIColor
+  @objc public var interactiveColor: UIKit.UIColor
+  @objc public var boldFontName: Swift.String?
+  @objc public var mediumFontName: Swift.String?
+  @objc public var regularFontName: Swift.String?
+  @objc public var lightFontName: Swift.String?
+  @objc public var logoStyle: RewardsSDK.RewardsImageStyle
+  @objc public var profileImageStyle: RewardsSDK.RewardsImageStyle
+  @objc public var brandDetailsHeaderStyle: RewardsSDK.RewardsHeaderStyle
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol URLConvertible {
+  func asURL() throws -> Foundation.URL
+}
+extension Swift.String : RewardsSDK.URLConvertible {
+  public func asURL() throws -> Foundation.URL
+}
+extension Foundation.URL : RewardsSDK.URLConvertible {
+  public func asURL() throws -> Foundation.URL
+}
+extension Foundation.URLComponents : RewardsSDK.URLConvertible {
+  public func asURL() throws -> Foundation.URL
+}
+public protocol URLRequestConvertible {
+  func asURLRequest() throws -> Foundation.URLRequest
+}
+extension RewardsSDK.URLRequestConvertible {
+  public var urlRequest: Foundation.URLRequest? {
+    get
+  }
+}
+extension Foundation.URLRequest : RewardsSDK.URLRequestConvertible {
+  public func asURLRequest() throws -> Foundation.URLRequest
+}
+extension Foundation.URLRequest {
+  public init(url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod, headers: RewardsSDK.HTTPHeaders? = nil) throws
+}
+@discardableResult
+public func request(_ url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .get, parameters: RewardsSDK.Parameters? = nil, encoding: RewardsSDK.ParameterEncoding = URLEncoding.default, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.DataRequest
+@discardableResult
+public func request(_ urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.DataRequest
+@discardableResult
+public func download(_ url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .get, parameters: RewardsSDK.Parameters? = nil, encoding: RewardsSDK.ParameterEncoding = URLEncoding.default, headers: RewardsSDK.HTTPHeaders? = nil, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+@discardableResult
+public func download(_ urlRequest: RewardsSDK.URLRequestConvertible, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+@discardableResult
+public func download(resumingWith resumeData: Foundation.Data, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+@discardableResult
+public func upload(_ fileURL: Foundation.URL, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+@discardableResult
+public func upload(_ fileURL: Foundation.URL, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+@discardableResult
+public func upload(_ data: Foundation.Data, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+@discardableResult
+public func upload(_ data: Foundation.Data, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+@discardableResult
+public func upload(_ stream: Foundation.InputStream, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+@discardableResult
+public func upload(_ stream: Foundation.InputStream, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+public func upload(multipartFormData: @escaping (RewardsSDK.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil, encodingCompletion: ((RewardsSDK.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
+public func upload(multipartFormData: @escaping (RewardsSDK.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: RewardsSDK.URLRequestConvertible, encodingCompletion: ((RewardsSDK.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
+@available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+@discardableResult
+public func stream(withHostName hostName: Swift.String, port: Swift.Int) -> RewardsSDK.StreamRequest
+@available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+@discardableResult
+public func stream(with netService: Foundation.NetService) -> RewardsSDK.StreamRequest
+open class SessionManager {
+  public enum MultipartFormDataEncodingResult {
+    case success(request: RewardsSDK.UploadRequest, streamingFromDisk: Swift.Bool, streamFileURL: Foundation.URL?)
+    case failure(Swift.Error)
+  }
+  public static let `default`: RewardsSDK.SessionManager
+  public static let defaultHTTPHeaders: RewardsSDK.HTTPHeaders
+  public static let multipartFormDataEncodingMemoryThreshold: Swift.UInt64
+  final public let session: Foundation.URLSession
+  final public let delegate: RewardsSDK.SessionDelegate
+  open var startRequestsImmediately: Swift.Bool
+  open var adapter: RewardsSDK.RequestAdapter?
+  open var retrier: RewardsSDK.RequestRetrier? {
+    get
+    set
+  }
+  open var backgroundCompletionHandler: (() -> Swift.Void)?
+  public init(configuration: Foundation.URLSessionConfiguration = URLSessionConfiguration.default, delegate: RewardsSDK.SessionDelegate = SessionDelegate(), serverTrustPolicyManager: RewardsSDK.ServerTrustPolicyManager? = nil)
+  public init?(session: Foundation.URLSession, delegate: RewardsSDK.SessionDelegate, serverTrustPolicyManager: RewardsSDK.ServerTrustPolicyManager? = nil)
+  @objc deinit
+  @discardableResult
+  open func request(_ url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .get, parameters: RewardsSDK.Parameters? = nil, encoding: RewardsSDK.ParameterEncoding = URLEncoding.default, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.DataRequest
+  @discardableResult
+  open func request(_ urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.DataRequest
+  @discardableResult
+  open func download(_ url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .get, parameters: RewardsSDK.Parameters? = nil, encoding: RewardsSDK.ParameterEncoding = URLEncoding.default, headers: RewardsSDK.HTTPHeaders? = nil, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+  @discardableResult
+  open func download(_ urlRequest: RewardsSDK.URLRequestConvertible, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+  @discardableResult
+  open func download(resumingWith resumeData: Foundation.Data, to destination: RewardsSDK.DownloadRequest.DownloadFileDestination? = nil) -> RewardsSDK.DownloadRequest
+  @discardableResult
+  open func upload(_ fileURL: Foundation.URL, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+  @discardableResult
+  open func upload(_ fileURL: Foundation.URL, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+  @discardableResult
+  open func upload(_ data: Foundation.Data, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+  @discardableResult
+  open func upload(_ data: Foundation.Data, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+  @discardableResult
+  open func upload(_ stream: Foundation.InputStream, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil) -> RewardsSDK.UploadRequest
+  @discardableResult
+  open func upload(_ stream: Foundation.InputStream, with urlRequest: RewardsSDK.URLRequestConvertible) -> RewardsSDK.UploadRequest
+  open func upload(multipartFormData: @escaping (RewardsSDK.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, to url: RewardsSDK.URLConvertible, method: RewardsSDK.HTTPMethod = .post, headers: RewardsSDK.HTTPHeaders? = nil, queue: Dispatch.DispatchQueue? = nil, encodingCompletion: ((RewardsSDK.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
+  open func upload(multipartFormData: @escaping (RewardsSDK.MultipartFormData) -> Swift.Void, usingThreshold encodingMemoryThreshold: Swift.UInt64 = SessionManager.multipartFormDataEncodingMemoryThreshold, with urlRequest: RewardsSDK.URLRequestConvertible, queue: Dispatch.DispatchQueue? = nil, encodingCompletion: ((RewardsSDK.SessionManager.MultipartFormDataEncodingResult) -> Swift.Void)?)
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  @discardableResult
+  open func stream(withHostName hostName: Swift.String, port: Swift.Int) -> RewardsSDK.StreamRequest
+  @available(iOS 9.0, macOS 10.11, tvOS 9.0, *)
+  @discardableResult
+  open func stream(with netService: Foundation.NetService) -> RewardsSDK.StreamRequest
+}
+extension RewardsSDK.HTTPMethod : Swift.Equatable {}
+extension RewardsSDK.HTTPMethod : Swift.Hashable {}
+extension RewardsSDK.HTTPMethod : Swift.RawRepresentable {}
+extension RewardsSDK.URLEncoding.Destination : Swift.Equatable {}
+extension RewardsSDK.URLEncoding.Destination : Swift.Hashable {}
+extension RewardsSDK.URLEncoding.ArrayEncoding : Swift.Equatable {}
+extension RewardsSDK.URLEncoding.ArrayEncoding : Swift.Hashable {}
+extension RewardsSDK.URLEncoding.BoolEncoding : Swift.Equatable {}
+extension RewardsSDK.URLEncoding.BoolEncoding : Swift.Hashable {}
+extension RewardsSDK.NetworkReachabilityManager.ConnectionType : Swift.Equatable {}
+extension RewardsSDK.NetworkReachabilityManager.ConnectionType : Swift.Hashable {}
+extension RewardsSDK.RewardsImageStyle : Swift.Equatable {}
+extension RewardsSDK.RewardsImageStyle : Swift.Hashable {}
+extension RewardsSDK.RewardsImageStyle : Swift.RawRepresentable {}
+extension RewardsSDK.RewardsHeaderStyle : Swift.Equatable {}
+extension RewardsSDK.RewardsHeaderStyle : Swift.Hashable {}
+extension RewardsSDK.RewardsHeaderStyle : Swift.RawRepresentable {}
