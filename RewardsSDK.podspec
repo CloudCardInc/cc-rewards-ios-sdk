@@ -151,7 +151,7 @@ Pod::Spec.new do |s|
   s.summary = 'RewardsSDK by CloudCard'
   s.authors = { 'CloudCard' => 'apps@cloudcardsystems.com' }
   s.homepage = "https://www.cloudcardinc.com/"
-  s.source = { :git => 'https://github.com/fahadnaeem786/rewardsdk.git', :tag => s.version }
+  s.source = { :git => 'https://github.com/CloudCardInc/cc-rewards-ios-sdk.git', :tag => s.version }
 
   s.ios.deployment_target = '13.0'
 
