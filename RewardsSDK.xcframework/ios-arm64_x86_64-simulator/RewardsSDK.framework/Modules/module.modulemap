@@ -6,6 +6,6 @@ framework module RewardsSDK {
 }
 
 module RewardsSDK.Swift {
-    header "RewardsSDK-Swift.h"
-    requires objc
+  header "RewardsSDK-Swift.h"
+  requires objc
 }

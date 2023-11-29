@@ -26,7 +26,8 @@ RewardsManager.shared.initialize(origin: "XXXX",
                                  userProfileImage: URL,
                                  summaryContent: "XXXX",
                                  userCurrentLocation: CLLocation,
-                                 theme: RewardsSDKTheme)
+                                 theme: RewardsSDKTheme,
+                                 environment: Environment)
 ```
 
 ## Parameters
@@ -184,5 +185,14 @@ enum RewardsHeaderStyle: Int {
     case diagonal
     case rectangular
 }
-```                            
+```         
+
+## Environment
+
+```swift
+enum Environment :Int {
+    case SandBox
+    case Production
+}
+```                   
        

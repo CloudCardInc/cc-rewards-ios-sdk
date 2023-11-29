@@ -16,7 +16,7 @@
 #   #
 
 #   spec.name         = "RewardSDK"
-#   spec.version      = "1.0.0"
+#   spec.version      = "1.1.0"
 #   spec.summary      = "RewardSDK by CloudCard"
 
 #   # This description is used to generate tags and improve search results.
@@ -146,7 +146,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'RewardsSDK'
-  s.version = '1.0.0'
+  s.version = '1.1.0'
   s.license = 'MIT'
   s.summary = 'RewardsSDK by CloudCard'
   s.authors = { 'CloudCard' => 'apps@cloudcardsystems.com' }
