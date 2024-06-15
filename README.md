@@ -10,7 +10,7 @@ CocoaPods is a dependency manager for Cocoa projects. For usage and installation
 
 
 ```bash
-pod 'RewardsSDK', :git => 'https://github.com/CloudCardInc/cc-rewards-ios-sdk.git'
+pod 'RewardsSDK', '~> 1.2'
 ```
     
 ## Usage

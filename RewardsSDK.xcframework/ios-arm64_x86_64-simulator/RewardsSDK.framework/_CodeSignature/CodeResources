@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		lqTlXi++WTfrdJuh8M3y51BEXqk=
+		WbRPuKGcZoTJQZ9j3VnRaRS7MuI=
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		/aC2od+Fn1gotXeOVaeK8F6RrhM=
+		Au432BkQvG7p5VB+WrecTc1TptI=
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		lqTlXi++WTfrdJuh8M3y51BEXqk=
+		WbRPuKGcZoTJQZ9j3VnRaRS7MuI=
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -54,11 +54,15 @@
 		</data>
 		<key>Modules/RewardsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		K7nPMRwdLkgy8R22AwzdhhLr8Hc=
+		TC4eierBgx7QaM3Gdn2NDQnMeyw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		16qcGbmxPlZsyeh5MPcjYesLhjM=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		CbeWbDbeTJWD0q8pZEMPy0QyCqo=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -81,7 +85,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7+43vKUwNn5sK6qe3cEEhpWXEHJMOk5h69xGBD07Hto=
+			oPbSb2PLHCdMrD+zp8C9hEZFobF6lt3aaTWthgJSmR0=
 			</data>
 		</dict>
 		<key>Modules/RewardsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -109,14 +113,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7yKGL8lOC/t5VK6TLeH1WBOW87A5+j9ZlWxz5707ddM=
+			FjTUPQZJr3I/uE/XHPToeSZy6FWXq194qpdVvHLFfGs=
 			</data>
 		</dict>
 		<key>Modules/RewardsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7+43vKUwNn5sK6qe3cEEhpWXEHJMOk5h69xGBD07Hto=
+			oPbSb2PLHCdMrD+zp8C9hEZFobF6lt3aaTWthgJSmR0=
 			</data>
 		</dict>
 		<key>Modules/RewardsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -144,7 +148,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			95EtJfKHJ3YHhEr2i81w45uiQB7xhPmA0RKu+BoIhLo=
+			eCqeTpbikgUSuCYuRycRohb+IHKVFoICijSSrsboeRY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -152,6 +156,13 @@
 			<key>hash2</key>
 			<data>
 			c55HumXA1A5T9YsxNmxdt8MYa9vT3GSgHtJQoNSYjG0=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			oKPYD2EW90jFz30dM4PJkYW4tJVpcagfThwNyRy1zL0=
 			</data>
 		</dict>
 	</dict>
